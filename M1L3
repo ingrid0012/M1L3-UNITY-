@@ -1,0 +1,32 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CharacterScript : MonoBehaviour
+{
+    [SerializeField] Rigidbody rb; //hace referencia al cuerpo de mi pj
+    [SerializeField] float speed; // velocidad del personaje
+    [SerializeField] float shift; //Cantidad de unidades que el personaje izq y derecha
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.A)&& transform.position.x>-2)
+        {
+            transform.Translate(-shift, 0, 0);
+        }
+        if(Input.GetKeyDown(KeyCode.D)&& transform.position.x<2)
+        {
+            transform.Translate(shift, 0, 0);
+        }
+    }
+
+    void FixedUpdate() //funcion responsable del movimiento de cuerpos RB
+    {
+       rb.MovePosition(transform.position+transform.forward*speed*Time.deltaTime);
+    }
+}
